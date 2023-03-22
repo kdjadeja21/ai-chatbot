@@ -8,6 +8,11 @@ interface IMsg {
     msg: string;
 }
 
+interface IRequestParams {
+    role: string,
+    content: string
+}
+
 const ChatBox: React.FC = () => {
     const [chat, setChat] = useState<IMsg[]>([]);
     const [userId, setUserId] = useState<string>("");
@@ -37,8 +42,16 @@ const ChatBox: React.FC = () => {
             chatAray.push(message)
             setChat(chatAray)
 
+            const reqArray: IRequestParams[] = [];
+            chatAray.map((chat: IMsg): void => {
+                if (chat.user === "User_AI")
+                    reqArray.push({ role: "assistant", content: chat.msg })
+                reqArray.push({ role: "user", content: chat.msg })
+            }
+            )
+
             // dispatch message to other users
-            const resp = await axios.post("/api/script", message,);
+            const resp = await axios.post("/api/script", reqArray,);
 
             if (resp.status === 200) {
                 setLoading(false);
