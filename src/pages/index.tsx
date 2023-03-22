@@ -10,7 +10,7 @@ const Index: React.FC = () => {
         <title>ChatBot</title>
       </Head>
       <AppBar className="text-center" position="static">
-        <h1 className="pt-6 pb-8">ChatBot</h1>
+        <h1 className="pt-4 pb-4 text-2xl">ChatBot</h1>
       </AppBar>
       <ChatBox />
     </>
