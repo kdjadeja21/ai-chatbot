@@ -13,15 +13,13 @@ const ChatBox: React.FC = () => {
     const [userId, setUserId] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
-    const viewRef = useRef(null);
-
-    const scrollToBottom = () => {
-        // viewRef.current?.scrollIntoView({ block: "nearest", behavior: 'smooth' })
-    }
+    const viewRef = useRef<null | HTMLDivElement>(null);
 
     useEffect((): any => {
 
-        scrollToBottom();
+        if (viewRef) {
+            viewRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
         setUserId("User_" + String(new Date().getTime()).substr(-3));
 
     }, [chat]);
@@ -35,28 +33,28 @@ const ChatBox: React.FC = () => {
                 msg,
             };
 
-            chat.push(message)
+            const chatAray = [...chat];
+            chatAray.push(message)
+            setChat(chatAray)
 
             // dispatch message to other users
             const resp = await axios.post("/api/script", message,);
 
-            // reset field if OK
             if (resp.status === 200) {
                 setLoading(false);
             }
-            chat.push(resp.data)
+            const chatRes = [...chatAray];
+            chatRes.push(resp.data)
+            setChat(chatRes)
         }
-
-        // focus after click
-        // inputRef?.current?.focus();
     };
 
     return (
-        <div className="flex h-screen antialiased text-gray-800">
+        <div className="flex h-responsive antialiased text-gray-800">
             <div className="flex flex-row h-full w-full overflow-x-hidden">
                 <div className="flex flex-col flex-auto h-full p-6">
-                    <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4 shadow">
-                        <div className="flex flex-col h-full overflow-x-auto overflow-y-auto mb-4" ref={viewRef}>
+                    <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4 shadow" >
+                        <div className="flex flex-col h-full overflow-x-auto mb-4">
                             <div className="flex flex-col h-full">
                                 <div className="grid grid-cols-12 gap-y-2">
 
@@ -78,7 +76,7 @@ const ChatBox: React.FC = () => {
                                         No chat messages
                                     </div>)
                                 }
-
+                                <div ref={viewRef} />
                             </div>
                         </div>
                         <ChatInput

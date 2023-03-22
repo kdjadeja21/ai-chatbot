@@ -89,6 +89,10 @@ a {
   text-decoration: none;
 }
 
+.h-responsive {
+  height: 85vh;
+}
+
 .loader-position {
   position: absolute;
   right: 10px;

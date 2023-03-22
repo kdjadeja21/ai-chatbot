@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface IChatInputProps {
     loading: boolean;
@@ -7,11 +7,16 @@ interface IChatInputProps {
 
 const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
     const [msg, setMsg] = useState<string>("");
+    const inputRef = useRef<null | HTMLInputElement>(null);
 
     const msgHandler = () => {
         sendMessage(msg);
         setMsg("");
     }
+
+    useEffect(() => {
+        inputRef?.current?.focus();
+    }, [loading])
 
     return (
         <>
@@ -19,7 +24,7 @@ const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
                 <div className="flex-grow ml-4">
                     <div className="relative w-full">
                         <input
-                            autoFocus
+                            ref={inputRef}
                             disabled={loading}
                             value={msg}
                             type="text"
