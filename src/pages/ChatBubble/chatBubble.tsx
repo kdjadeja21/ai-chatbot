@@ -17,7 +17,7 @@ const ChatBubble: React.FC<IChatBubbleProps> = ({ message, isAI = false }) => {
                                                 A
                                             </div> */}
                             <div
-                                className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                                className="relative ml-3 text-sm bg-white dark:bg-zinc-800 dark:text-white py-2 px-4 shadow rounded-xl dark:shadow-2xl"
                             >
                                 <div>
                                     {message}
@@ -34,7 +34,7 @@ const ChatBubble: React.FC<IChatBubbleProps> = ({ message, isAI = false }) => {
                                                 A
                                             </div> */}
                             <div
-                                className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+                                className="relative mr-3 text-sm bg-indigo-100 dark:bg-cyan-500 py-2 px-4 shadow rounded-xl"
                             >
                                 <div>
                                     {message}

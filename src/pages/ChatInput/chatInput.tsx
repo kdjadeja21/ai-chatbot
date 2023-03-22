@@ -20,7 +20,7 @@ const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
 
     return (
         <>
-            <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full pr-4">
+            <div className="flex flex-row items-center h-16 rounded-xl dark:bg-gray-700 w-full pr-4">
                 <div className="flex-grow ml-4">
                     <div className="relative w-full">
                         <input
@@ -28,7 +28,7 @@ const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
                             disabled={loading}
                             value={msg}
                             type="text"
-                            className="flex w-full border box-border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                            className="flex w-full border box-border dark:border-gray-600 dark:bg-gray-600 dark:text-white rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                             placeholder="Type your query..."
                             onChange={(e) => {
                                 setMsg(e.target.value);
@@ -52,7 +52,7 @@ const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
                 </div>
                 <div className="ml-4">
                     <button
-                        className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                        className="flex items-center justify-center bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-800 rounded-xl text-white px-4 py-1 flex-shrink-0"
                         disabled={loading}
                         onClick={msgHandler}
                     >
