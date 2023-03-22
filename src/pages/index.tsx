@@ -12,7 +12,7 @@ const Index: React.FC = () => {
       <Head>
         <title>ChatBot</title>
       </Head>
-      <AppBar className="text-center flex flex-row justify-between pl-6 pr-6 bg-cyan-500 dark:bg-cyan-800" position="static">
+      <AppBar className="flex flex-row justify-between pl-6 pr-6 bg-cyan-500 dark:bg-cyan-800" position="static">
         <h1 className="pt-4 pb-4 text-2xl">ChatBot</h1>
         <button>
           {colorTheme === "light" ? (
