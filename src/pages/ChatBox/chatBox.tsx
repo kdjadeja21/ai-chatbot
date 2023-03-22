@@ -16,7 +16,7 @@ const ChatBox: React.FC = () => {
     const viewRef = useRef(null);
 
     const scrollToBottom = () => {
-        viewRef.current?.scrollIntoView({ block: "nearest", behavior: 'smooth' })
+        // viewRef.current?.scrollIntoView({ block: "nearest", behavior: 'smooth' })
     }
 
     useEffect((): any => {
