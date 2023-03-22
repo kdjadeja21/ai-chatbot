@@ -1,5 +1,4 @@
 import React from "react";
-import { AppBar } from "@mui/material";
 import ChatBox from './ChatBox/chatBox';
 import Head from "next/head";
 import useDarkMode from "@/hooks/useDarkMode";
@@ -12,9 +11,11 @@ const Index: React.FC = () => {
       <Head>
         <title>ChatBot</title>
       </Head>
-      <AppBar className="text-center flex flex-row justify-between pl-6 pr-6 bg-cyan-500 dark:bg-cyan-800" position="static">
-        <h1 className="pt-4 pb-4 text-2xl">ChatBot</h1>
-        <button>
+      <nav className="flex items-center justify-between flex-wrap bg-cyan-500 dark:bg-cyan-800 p-4 shadow-xl">
+        <div className="flex items-center flex-shrink-0 text-white mr-6">
+          <span className="font-semibold text-xl tracking-tight">ChatBot</span>
+        </div>
+        <button className="text-white">
           {colorTheme === "light" ? (
             <svg
               onClick={() => setTheme("light")}
@@ -49,7 +50,7 @@ const Index: React.FC = () => {
             </svg>
           )}
         </button>
-      </AppBar>
+      </nav>
       <ChatBox />
     </>
   )
