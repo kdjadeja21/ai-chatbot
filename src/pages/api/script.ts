@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // dispatch to channel "message"
         const response = await openAi.createChatCompletion({
             model: "gpt-3.5-turbo",
-            messages: [{ role: "user", content: message.msg }],
+            messages: message,
         })
 
         return res.status(response.status).json({ user: "User_AI", msg: response.data.choices[0].message?.content })
