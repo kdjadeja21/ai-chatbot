@@ -66,7 +66,7 @@ const ChatBox: React.FC = () => {
         <div className="flex h-responsive antialiased text-gray-800">
             <div className="flex flex-row h-full w-full overflow-x-hidden">
                 <div className="flex flex-col flex-auto h-full p-6">
-                    <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4 shadow" >
+                    <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 dark:bg-gray-700 h-full p-4 shadow" >
                         <div className="flex flex-col h-full overflow-x-auto mb-4">
                             <div className="flex flex-col h-full">
                                 <div className="grid grid-cols-12 gap-y-2">
@@ -85,7 +85,7 @@ const ChatBox: React.FC = () => {
 
                                 </div>
                                 {
-                                    chat.length === 0 && (<div className="flex justify-center items-center text-center">
+                                    chat.length === 0 && (<div className="flex justify-center items-center text-center dark:text-white">
                                         No chat messages
                                     </div>)
                                 }
