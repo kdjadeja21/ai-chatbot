@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
 interface IChatInputProps {
+    theme: string;
     loading: boolean;
     sendMessage: (msg: string) => void;
 }
 
-const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
+const ChatInput: React.FC<IChatInputProps> = ({ theme, loading, sendMessage }) => {
     const [msg, setMsg] = useState<string>("");
     const inputRef = useRef<null | HTMLInputElement>(null);
 
@@ -16,7 +17,7 @@ const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
 
     useEffect(() => {
         inputRef?.current?.focus();
-    }, [loading])
+    }, [])
 
     return (
         <>
@@ -35,7 +36,6 @@ const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
                             }}
                             onKeyPress={(e) => {
                                 if (e.key === "Enter") {
-                                    e.preventDefault();
                                     msgHandler();
                                 }
                             }}
@@ -43,7 +43,7 @@ const ChatInput: React.FC<IChatInputProps> = ({ loading, sendMessage }) => {
                         {
                             loading &&
                             (<div className="loader-position">
-                                <i className="loader"></i>
+                                <i className={theme === "dark" ? "loader" : "loader2"}></i>
                             </div>)
                         }
 

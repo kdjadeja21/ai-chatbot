@@ -51,7 +51,7 @@ const Index: React.FC = () => {
           )}
         </button>
       </nav>
-      <ChatBox />
+      <ChatBox theme={colorTheme} />
     </>
   )
 };
