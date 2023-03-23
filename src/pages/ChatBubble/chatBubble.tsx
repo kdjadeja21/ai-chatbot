@@ -9,7 +9,7 @@ const ChatBubble: React.FC<IChatBubbleProps> = ({ message, isAI = false }) => {
         <>
             {
                 isAI ?
-                    <div className="col-start-1 col-end-8 p-3 rounded-lg">
+                    <div className="col-start-1 col-end-11 p-3 rounded-lg">
                         <div className="flex flex-row items-center">
                             {/* <div
                                                 className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
@@ -19,7 +19,7 @@ const ChatBubble: React.FC<IChatBubbleProps> = ({ message, isAI = false }) => {
                             <div
                                 className="relative ml-3 text-sm bg-white dark:bg-zinc-800 dark:text-white py-2 px-4 shadow rounded-xl dark:shadow-2xl"
                             >
-                                <div>
+                                <div className="whitespace-pre-line">
                                     {message}
                                 </div>
                             </div>
@@ -36,7 +36,7 @@ const ChatBubble: React.FC<IChatBubbleProps> = ({ message, isAI = false }) => {
                             <div
                                 className="relative mr-3 text-sm bg-indigo-100 dark:bg-cyan-500 py-2 px-4 shadow rounded-xl"
                             >
-                                <div>
+                                <div className="whitespace-pre-line">
                                     {message}
                                 </div>
                             </div>
