@@ -13,7 +13,7 @@ interface IRequestParams {
     content: string
 }
 
-const ChatBox: React.FC = () => {
+const ChatBox: React.FC<{ theme: string }> = ({ theme }) => {
     const [chat, setChat] = useState<IMsg[]>([]);
     const [userId, setUserId] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
@@ -93,6 +93,7 @@ const ChatBox: React.FC = () => {
                             </div>
                         </div>
                         <ChatInput
+                            theme={theme}
                             loading={loading}
                             sendMessage={sendMessage}
                         />
