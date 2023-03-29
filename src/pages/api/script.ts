@@ -20,7 +20,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             model: "gpt-3.5-turbo",
             messages: message,
         })
-
+        if (response.status !== 200) {
+            return res.status(response.status).json({ user: "User_AI", msg: "" })
+        }
         return res.status(response.status).json({ user: "User_AI", msg: response.data.choices[0].message?.content })
     }
 };

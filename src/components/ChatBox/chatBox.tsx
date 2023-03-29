@@ -17,6 +17,7 @@ const ChatBox: React.FC<{ theme: string }> = ({ theme }) => {
     const [chat, setChat] = useState<IMsg[]>([]);
     const [userId, setUserId] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
 
     const viewRef = useRef<null | HTMLDivElement>(null);
 
@@ -27,11 +28,12 @@ const ChatBox: React.FC<{ theme: string }> = ({ theme }) => {
         }
         setUserId("User_" + String(new Date().getTime()).substr(-3));
 
-    }, [chat]);
+    }, [chat, isError]);
 
     const sendMessage = async (msg: string) => {
         if (msg) {
             setLoading(true);
+            setIsError(false);
             // build message obj
             const message: IMsg = {
                 user: userId,
@@ -51,14 +53,22 @@ const ChatBox: React.FC<{ theme: string }> = ({ theme }) => {
             )
 
             // dispatch message to other users
-            const resp = await axios.post("/api/script", reqArray,);
-
-            if (resp.status === 200) {
-                setLoading(false);
-            }
-            const chatRes = [...chatAray];
-            chatRes.push(resp.data)
-            setChat(chatRes)
+            await axios.post("/api/script", reqArray, {
+                signal: AbortSignal.timeout(60000) //Aborts request after 1 minute
+            })
+                .then((res) => {
+                    if (res.status === 200) {
+                        setLoading(false);
+                    }
+                    const chatRes = [...chatAray];
+                    chatRes.push(res.data)
+                    setChat(chatRes)
+                })
+                .catch((err: any) => {
+                    console.log({ err });
+                    setIsError(true);
+                    setLoading(false);
+                })
         }
     };
 
@@ -87,6 +97,11 @@ const ChatBox: React.FC<{ theme: string }> = ({ theme }) => {
                                 {
                                     chat.length === 0 && (<div className="flex justify-center items-center text-center dark:text-white">
                                         No chat messages
+                                    </div>)
+                                }
+                                {
+                                    isError && (<div className="flex justify-center items-center text-center text-orange-500">
+                                        Something went wrong. Please ask again or refresh the page and try again.
                                     </div>)
                                 }
                                 <div ref={viewRef} />

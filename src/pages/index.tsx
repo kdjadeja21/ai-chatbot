@@ -1,7 +1,8 @@
 import React from "react";
-import ChatBox from './ChatBox/chatBox';
+import ChatBox from '../components/ChatBox/chatBox';
 import Head from "next/head";
 import useDarkMode from "@/hooks/useDarkMode";
+import ErrorBoundary from "@/components/ErrorBoundary/ErrorBoundary";
 
 const Index: React.FC = () => {
   const [colorTheme, setTheme] = useDarkMode();
@@ -51,7 +52,9 @@ const Index: React.FC = () => {
           )}
         </button>
       </nav>
-      <ChatBox theme={colorTheme} />
+      <ErrorBoundary>
+        <ChatBox theme={colorTheme} />
+      </ErrorBoundary>
     </>
   )
 };
