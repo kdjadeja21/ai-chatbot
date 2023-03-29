@@ -29,7 +29,7 @@ const ChatInput: React.FC<IChatInputProps> = ({ theme, loading, sendMessage }) =
                             disabled={loading}
                             value={msg}
                             type="text"
-                            className="flex w-full border box-border dark:border-gray-600 dark:bg-gray-600 dark:text-white rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                            className="flex w-full border box-border dark:border-gray-600 dark:bg-gray-600 dark:text-white rounded-xl focus:outline-none focus:border-indigo-300 pl-4 pr-4 h-10"
                             placeholder="Type your query..."
                             onChange={(e) => {
                                 setMsg(e.target.value);
